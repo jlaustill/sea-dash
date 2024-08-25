@@ -1,0 +1,29 @@
+{
+    "name": "sea-dash",
+    "description": "A library that includes many commonly used functions",
+    "license": "MIT",
+    "category": "utils",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jlaustill/sea-dash.git"
+    },
+    "version": "0.0.1",
+    "frameworks": "*",
+    "platforms": "*",
+    "export": {
+        "include": [
+            "src",
+            "include"
+        ]
+    },
+    "headers": [
+        "sea-dash.h"
+    ],
+    "authors": [
+        {
+            "name": "Joshua Austill",
+            "email": "jlaustill@gmail.com",
+            "url": "https://github.com/jlaustill"
+        }
+    ]
+}
