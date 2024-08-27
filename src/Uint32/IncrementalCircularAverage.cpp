@@ -1,4 +1,9 @@
-#include "IncrementalCircularAverage.hpp"
+// Copyright: Joshua Austill 2024
+
+#ifndef SEADASH_INT32_INCREMENTAL_CIRCULAR_AVERAGE_CPP_
+#define SEADASH_INT32_INCREMENTAL_CIRCULAR_AVERAGE_CPP_
+
+#include "Uint32/IncrementalCircularAverage.hpp"
 
 namespace SeaDash {
 namespace Uint32 {
@@ -39,3 +44,5 @@ uint32_t IncrementalCircularAverage::getAverage() const {
 
 }  // namespace Uint32
 }  // namespace SeaDash
+
+#endif  // SEADASH_INT32_INCREMENTAL_CIRCULAR_AVERAGE_CPP_
