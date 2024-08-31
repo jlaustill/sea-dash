@@ -1,5 +1,7 @@
-#ifndef INCREMENTAL_CIRCULAR_AVERAGE_H
-#define INCREMENTAL_CIRCULAR_AVERAGE_H
+// Copyright: Joshua Austill 2024
+
+#ifndef UINT32_INCREMENTALCIRCULARAVERAGE_HPP_
+#define UINT32_INCREMENTALCIRCULARAVERAGE_HPP_
 
 #include <cstdint>
 
@@ -11,7 +13,7 @@ class IncrementalCircularAverage {
   uint32_t* data;     // Pointer to dynamically allocated array
   uint8_t size;       // Size of the buffer
   uint8_t index = 0;  // Current index in the circular buffer
-  uint32_t sum = 0;   // Running sum of the values in the buffer
+  uint64_t sum = 0;   // Running sum of the values in the buffer
   bool full = false;  // Flag to indicate if the buffer is full
 
  public:
@@ -29,4 +31,4 @@ class IncrementalCircularAverage {
 }  // namespace Uint32
 }  // namespace SeaDash
 
-#endif  // INCREMENTAL_CIRCULAR_AVERAGE_H
+#endif  // UINT32_INCREMENTALCIRCULARAVERAGE_HPP_
