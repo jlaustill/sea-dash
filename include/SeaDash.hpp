@@ -5,6 +5,7 @@
 
 // Include all the SeaDash headers
 #include "Bits.hpp"
+#include "Bytes.hpp"
 #include "Math.hpp"
 #include "Uint32/IncrementalCircularAverage.hpp"
 
