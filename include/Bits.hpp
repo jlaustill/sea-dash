@@ -7,6 +7,16 @@
 namespace SeaDash {
 namespace Bits {
 
+template<typename T>
+bool parity(T question) {
+    bool parity = false;
+    while (question) {
+        parity = !parity;     // Flip parity each time we find a set bit
+        question &= (question - 1); // Remove the lowest set bit
+    }
+    return parity;
+}
+
 template <typename T>
 unsigned getMaxN() {
   return CHAR_BIT * sizeof(T);
