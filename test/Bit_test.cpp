@@ -131,3 +131,71 @@ TEST(BitUtilsTest, getNOnesAtBoundary) {
   EXPECT_EQ(result, 0b11111111111111111111111111111110);
 }
 
+// Test cases for SeaDash::Bits::parity function
+TEST(ParityTests, TestZero) {
+    // Edge case: zero has even parity
+    EXPECT_FALSE(SeaDash::Bits::parity(0));  // Expect even parity (false)
+}
+
+TEST(ParityTests, TestOne) {
+    // Edge case: one has odd parity
+    EXPECT_TRUE(SeaDash::Bits::parity(1));  // Expect odd parity (true)
+}
+
+TEST(ParityTests, TestTwo) {
+    // Edge case: two has even parity
+    EXPECT_FALSE(SeaDash::Bits::parity(2));  // Expect even parity (false)
+}
+
+TEST(ParityTests, TestThree) {
+    // 3 is 11 in binary, odd parity
+    EXPECT_TRUE(SeaDash::Bits::parity(3));  // Expect odd parity (true)
+}
+
+TEST(ParityTests, TestFour) {
+    // 4 is 100 in binary, even parity
+    EXPECT_FALSE(SeaDash::Bits::parity(4));  // Expect even parity (false)
+}
+
+TEST(ParityTests, TestMaxUint8) {
+    // 255 is 11111111 in binary, odd parity
+    EXPECT_TRUE(SeaDash::Bits::parity(uint8_t(255)));  // Expect odd parity (true)
+}
+
+TEST(ParityTests, TestMaxUint16) {
+    // 65535 is 16 bits of 1, even parity
+    EXPECT_FALSE(SeaDash::Bits::parity(uint16_t(65535)));  // Expect even parity (false)
+}
+
+TEST(ParityTests, TestMaxUint32) {
+    // Edge case: max uint32_t (4294967295) has 32 ones, even parity
+    EXPECT_FALSE(SeaDash::Bits::parity(uint32_t(4294967295U)));  // Expect even parity (false)
+}
+
+TEST(ParityTests, TestMaxUint64) {
+    // Edge case: max uint64_t (all 64 bits set), even parity
+    EXPECT_FALSE(SeaDash::Bits::parity(uint64_t(18446744073709551615ULL)));  // Expect even parity (false)
+}
+
+TEST(ParityTests, TestNegativeNumbers) {
+    // Negative numbers will have many set bits due to 2's complement representation
+    EXPECT_TRUE(SeaDash::Bits::parity(-1));  // -1 in two's complement is all bits set, odd parity
+    EXPECT_TRUE(SeaDash::Bits::parity(-2));  // -2 in two's complement is all bits set except the last one, odd parity
+    EXPECT_FALSE(SeaDash::Bits::parity(int8_t(-128))); // -128 in 8 bits is 10000000, even parity
+}
+
+TEST(ParityTests, TestSingleBit) {
+    // Test single bit numbers
+    EXPECT_TRUE(SeaDash::Bits::parity(1));     // 00000001 -> odd parity
+    EXPECT_FALSE(SeaDash::Bits::parity(2));    // 00000010 -> even parity
+    EXPECT_TRUE(SeaDash::Bits::parity(4));     // 00000100 -> odd parity
+    EXPECT_TRUE(SeaDash::Bits::parity(128));   // 10000000 -> odd parity
+}
+
+TEST(ParityTests, TestMixedBits) {
+    // Random mixed bit patterns
+    EXPECT_TRUE(SeaDash::Bits::parity(0b1010101));    // 7-bit alternating, odd parity
+    EXPECT_FALSE(SeaDash::Bits::parity(0b10101010));  // 8-bit alternating, even parity
+    EXPECT_FALSE(SeaDash::Bits::parity(0x55555555));  // 32-bit alternating, even parity
+    EXPECT_TRUE(SeaDash::Bits::parity(0x5555555555555555ULL));  // 64-bit alternating, odd parity
+}
